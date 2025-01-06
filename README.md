@@ -1,3 +1,10 @@
+<div align="center">
+
+[![Stars](https://img.shields.io/github/stars/BandarLabs/clickclickclick?color=yellow&style=flat&label=%E2%AD%90%20stars)](https://github.com/BandarLabs/clickclickclick/stargazers)
+[![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/BandarLabs/clickclickclick/blob/master/LICENSE)
+</div>
+
+
 ## ClickClickClick
 
 ### A framework to enable autonomous android and computer use using any LLM (local or remote)
@@ -27,7 +34,7 @@ The best result currently comes from using GPT 4o/4o-mini as planner and Gemini 
 
 1. This project needs `adb` to be installed on your local machine where the code is being executed.
 2. Enable USB debugging on the android phone.
-3. Python >= 3.11 (== 3.12 if using `mlx` for finder on Apple silicon)
+3. Python >= 3.11
 
 # How to install
 
