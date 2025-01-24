@@ -40,7 +40,7 @@ def execute_task_prompt(
         logger.exception("An error occurred during prompting.")
         yield state, state
 
-def run_app():
+def run_gradio():
     with gr.Blocks() as demo:
         state = gr.State([gr.ChatMessage(role="assistant", content="Step by step"),])  # Initialize the state to keep track of chatbot history
         examples = [
@@ -68,6 +68,3 @@ def run_app():
                          )
 
         demo.launch()
-
-if __name__ == "__main__":
-    run_app()

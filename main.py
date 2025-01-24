@@ -3,7 +3,7 @@ import os
 from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_with_timeout, execute_task
 from utils import get_executor, get_finder, get_planner
-
+from interface import run_gradio
 
 @click.group()
 def cli():
@@ -138,9 +138,14 @@ def setup():
 
     setup_environment_variables(planner, finder)
 
+@click.command()
+def gradio():
+    """Run the Gradio interface"""
+    run_gradio()
 
 cli.add_command(run)
 cli.add_command(setup)
+cli.add_command(gradio)
 
 if __name__ == "__main__":
     cli()

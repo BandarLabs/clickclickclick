@@ -63,15 +63,30 @@ pip install -r requirements.txt
 
 Put your model specific settings in `config/models.yaml` and export the keys specified in the yaml file.
 
-## As CLI tool
-
-### Install the tool
+## Install the tool
 
 (Ensure `OPENAI_API_KEY` and `GEMINI_API_KEY` API keys in the environment)
 
 ```sh
-pip install https://github.com/user-attachments/files/18163076/click3-0.2.0.tar.gz
+pip install git+https://github.com/BandarLabs/clickclickclick.git
 ```
+
+One more way is to clone the repo and install it:
+
+```sh
+git clone https://github.com/BandarLabs/clickclickclick
+pip install .
+```
+
+
+## From Web interface (Gradio)
+
+`click3 gradio`
+
+![Gradio interface](https://github.com/user-attachments/assets/610540f3-d324-4b6a-af9f-14e275f3b520)
+
+## As CLI tool
+
 
 ```sh
 click3 run open uber app
