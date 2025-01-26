@@ -36,30 +36,8 @@ The best result currently comes from using GPT 4o/4o-mini as planner and Gemini 
 2. Enable USB debugging on the android phone.
 3. Python >= 3.11
 
-# How to install
 
-Clone the repository and navigate into the project directory:
-
-```sh
-git clone https://github.com/BandarLabs/clickclickclick
-cd clickclickclick
-```
-
-It is recommended to create a virtual environment:
-
-```sh
-python3 -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-```
-
-Install the dependencies:
-
-```sh
-pip install -r requirements.txt
-```
-
-
-# How to use
+# How to use/install
 
 Put your model specific settings in `config/models.yaml` and export the keys specified in the yaml file.
 
@@ -79,13 +57,14 @@ pip install .
 ```
 
 
-## From Web interface (Gradio)
+## Use from web interface (Gradio)
 
 `click3 gradio`
 
-![Gradio interface](https://github.com/user-attachments/assets/610540f3-d324-4b6a-af9f-14e275f3b520)
+![Gradio interface](https://github.com/user-attachments/assets/1205eb1a-b334-4238-83a3-35d3fa18d8fe)
 
-## As CLI tool
+
+## Use as a CLI tool
 
 
 ```sh
@@ -93,7 +72,7 @@ click3 run open uber app
 ```
 
 
-## As Script
+## Use via script
 
 ### Setup
 
