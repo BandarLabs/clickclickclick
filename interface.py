@@ -1,4 +1,3 @@
-
 from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_with_timeout, execute_task_with_generator
 from utils import get_executor, get_finder, get_planner
@@ -10,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def execute_task_prompt(
     task_prompt: str, platform: str, planner_model: str, finder_model: str, state: List
 ) -> Generator[List, None, bool]:
@@ -20,7 +20,13 @@ def execute_task_prompt(
         finder = get_finder(finder_model, config, executor)
 
         result = execute_with_timeout(
-            execute_task_with_generator, config.TASK_TIMEOUT_IN_SECONDS, task_prompt, executor, planner, finder, config
+            execute_task_with_generator,
+            config.TASK_TIMEOUT_IN_SECONDS,
+            task_prompt,
+            executor,
+            planner,
+            finder,
+            config,
         )
         for output in result:
             new_entries = []
@@ -40,20 +46,31 @@ def execute_task_prompt(
         logger.exception("An error occurred during prompting.")
         yield state, state
 
+
 def run_gradio():
-    with gr.Blocks() as demo:
-        state = gr.State([gr.ChatMessage(role="assistant", content="Step by step"),])  # Initialize the state to keep track of chatbot history
+    with gr.Blocks() as gui:
+        state = gr.State(
+            [
+                gr.ChatMessage(role="assistant", content="Step by step"),
+            ]
+        )  # Initialize the state to keep track of chatbot history
         examples = [
             ["Open gmail and compose mail to someone@gmail.com ask for lunch"],
             ["Open google maps and find bus stops in Alanson"],
-            ["Find my rating in uber"]
+            ["Find my rating in uber"],
         ]
         with gr.Row():
             with gr.Column():
-                task_prompt = gr.Textbox(lines=2, placeholder="Enter task prompt here...")
-                platform = gr.Radio(['android', 'osx'], label="Platform", value='android')
-                planner_model = gr.Radio(['openai', 'gemini', 'ollama'], label="Planner Model", value='openai')
-                finder_model = gr.Radio(['openai', 'gemini', 'ollama', 'mlx'], label="Finder Model", value='gemini')
+                task_prompt = gr.Textbox(
+                    lines=2, label="Task Prompt", placeholder="Enter task prompt here..."
+                )
+                platform = gr.Radio(["android", "osx"], label="Platform", value="android")
+                planner_model = gr.Radio(
+                    ["openai", "gemini", "ollama"], label="Planner Model", value="openai"
+                )
+                finder_model = gr.Radio(
+                    ["openai", "gemini", "ollama", "mlx"], label="Finder Model", value="gemini"
+                )
                 submit_btn = gr.Button("Submit")
 
                 gr.Examples(examples, inputs=task_prompt)
@@ -62,9 +79,10 @@ def run_gradio():
                 chatbot = gr.Chatbot(type="messages", label="Task Execution History")
 
         # Connect the submit button to execute_task_prompt function
-        submit_btn.click(execute_task_prompt,
-                         inputs=[task_prompt, platform, planner_model, finder_model, state],
-                         outputs=[chatbot, state],
-                         )
+        submit_btn.click(
+            execute_task_prompt,
+            inputs=[task_prompt, platform, planner_model, finder_model, state],
+            outputs=[chatbot, state],
+        )
 
-        demo.launch()
+        gui.launch()
