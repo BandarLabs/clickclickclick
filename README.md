@@ -4,6 +4,25 @@
 [![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/BandarLabs/clickclickclick/blob/master/LICENSE)
 </div>
 
+## Table of Contents
+
+- [ClickClickClick](#clickclickclick)
+  - [Demos](#demos)
+  - [Prerequisites](#prerequisites)
+  - [How to use/install](#how-to-useinstall)
+  - [Use from web interface (Gradio)](#use-from-web-interface-gradio)
+  - [Use as a CLI tool](#use-as-a-cli-tool)
+  - [Use via script](#use-via-script)
+      - [Setup](#setup)
+      - [Running Tasks](#running-tasks)
+      - [Example](#example)
+  - [Use as an API](#use-as-an-api)
+      - [To run the app](#to-run-the-app)
+      - [POST /execute](#post-execute)
+  - [How to contribute](#how-to-contribute)
+  - [Things to do](#things-to-do)
+  - [License](#license)
+
 
 ## ClickClickClick
 
