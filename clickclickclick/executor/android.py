@@ -176,6 +176,15 @@ class AndroidExecutor(Executor):
             logger.exception("Error in click_at_a_point")
             return False
 
+    def long_press_at_a_point(self, x: int, y: int, observation: str, duration: int = 1000) -> bool:
+        try:
+            logger.debug(f"Long press at a point x y {x} {y} for duration {duration}")
+            run_adb_command(["shell", "input", "swipe", str(x), str(y), str(x), str(y), str(duration)])
+            return True
+        except Exception as e:
+            logger.exception("Error in long_press_at_a_point")
+            return False
+
     def screenshot(
         self, observation: str, as_base64: bool = False, use_tempfile: bool = False
     ) -> Union[Image.Image, str, tuple]:

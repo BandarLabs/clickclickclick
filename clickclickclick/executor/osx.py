@@ -79,6 +79,9 @@ class MacExecutor(Executor):
             logger.exception("Error in click_at_a_point")
             return False
 
+    def long_press_at_a_point(self, x: int, y: int, observation: str, duration: int = 1000):
+        raise NotImplementedError("Long press is not implemented on Mac")
+
     def swipe_left(self, observation: str) -> bool:
         raise NotImplementedError("Swipe left is not implemented on Mac")
 

@@ -59,6 +59,21 @@ function_declarations:
         - prompt
         - observation
 
+  - name: find_element_and_long_press
+    description: Find the coordinates of an element on the screen using a prompt. In the prompt, specify which section of the screen (usually empty space).
+    parameters:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: e.g., 'Empty space'.
+        observation:
+          type: string
+          description: Was the previous action done correctly? What do u see now that is relevant to your next course of action and was previous step successfully completed and why next step is to find coordinates of an ui element
+      required:
+        - prompt
+        - observation
+
   - name: task_finished
     description: Last step.
     parameters:

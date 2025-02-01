@@ -70,3 +70,7 @@ class Executor(ABC):
     @abstractmethod
     def click_at_a_point(self, x: int, y: int, observation: str) -> bool:
         pass
+
+    @abstractmethod
+    def long_press_at_a_point(self, x: int, y: int, observation: str) -> bool:
+        pass

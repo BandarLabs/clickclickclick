@@ -98,8 +98,7 @@ class ChatGPTPlanner(Planner):
                 }
                 for fn in self.functions
             ],
-            tool_choice="required",
-            parallel_tool_calls=False,
+            tool_choice="required"
         )
         print(completion)
         response_message = completion.choices[0].message
