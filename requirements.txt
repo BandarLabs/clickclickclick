@@ -6,7 +6,7 @@ futures
 pillow
 google-generativeai
 py-applescript
-openai==1.55.0
+openai
 ollama
 google.ai.generativelanguage
 click
