@@ -1,5 +1,9 @@
 from . import Executor
-import pyautogui
+try:
+    import pyautogui
+except ImportError:
+    print("warn: pyautogui is not found")
+
 from typing import List, Union
 import logging
 import io
