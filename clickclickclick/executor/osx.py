@@ -1,14 +1,15 @@
+from . import Executor
+from typing import List, Union
+import logging
+import io
+import base64
+from PIL import Image
+from tempfile import NamedTemporaryFile
+from . import logger
+
 try:
-    from . import Executor
     import pyautogui
-    from typing import List, Union
-    import logging
-    import io
-    import base64
-    from PIL import Image
     import applescript
-    from tempfile import NamedTemporaryFile
-    from . import logger
 except Exception as e:
     print(f"warn: import error in osx.py {e}")
 
