@@ -1,8 +1,8 @@
 from . import Executor
 try:
     import pyautogui
-except ImportError:
-    print("warn: pyautogui is not found")
+except Exception as e:
+    print(f"warn: pyautogui is not imported {e}")
 
 from typing import List, Union
 import logging
