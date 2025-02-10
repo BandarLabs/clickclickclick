@@ -4,7 +4,6 @@ import subprocess
 import re
 import base64
 import json
-import pyautogui
 import logging
 from clickclickclick.executor import Executor
 from PIL import Image
@@ -111,6 +110,7 @@ class BaseFinder(ABC):
                 raise Exception("Failed to parse screen size from adb output.")
         except Exception as e:
             # Attempt to get screen size using pyautogui (for desktops)
+            import pyautogui
             screen_x, screen_y = pyautogui.size()
 
         print(f"Screen size: x y {screen_x} {screen_y}")
