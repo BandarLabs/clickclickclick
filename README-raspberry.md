@@ -2,7 +2,18 @@
 
 ![raspberry pi](https://github.com/user-attachments/assets/da020494-d167-40da-839f-fa2cb4442002)
 
-This README provides specific instructions for installing and running the ClickClickClick framework on a Raspberry Pi Zero 2W.
+You can now control your phones using a raspberry pi and talking to it
+
+```python
+click3 run "Can you open Gmail and draft this email"
+```
+
+```python
+click3 run "Can you check bus stops in Nashville"
+```
+
+
+ClickClickClick framework on a Raspberry Pi Zero 2W.
 
 ## Prerequisites
 
