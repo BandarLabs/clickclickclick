@@ -58,6 +58,8 @@ The best result currently comes from using GPT 4o/4o-mini as planner and Gemini 
 
 # How to use/install
 
+For raspberry pi refer - [raspberry-pi.md](https://github.com/BandarLabs/clickclickclick/blob/main/README-raspberry.md)
+
 Put your model specific settings in `config/models.yaml` and export the keys specified in the yaml file.
 
 ## Install the tool
