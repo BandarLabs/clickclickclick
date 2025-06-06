@@ -34,7 +34,7 @@ gemini:
 
 openai:
   api_key: !ENV  OPENAI_API_KEY # OPENAI_API_KEY / AZURE_OPENAI_API_KEY
-  model_name: gpt-4o-mini # gpt-4o-mini / azure's model name
+  model_name: gpt-4.1-mini # gpt-4o-mini / azure's model name
   image_width: 512
   image_height: 512
   output_width: 512
