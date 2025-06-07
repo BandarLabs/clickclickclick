@@ -66,10 +66,10 @@ def run_gradio():
                 )
                 platform = gr.Radio(["android", "osx"], label="Platform", value="android")
                 planner_model = gr.Radio(
-                    ["openai", "gemini", "ollama"], label="Planner Model", value="openai"
+                    ["openai", "gemini", "anthropic", "ollama"], label="Planner Model", value="openai"
                 )
                 finder_model = gr.Radio(
-                    ["openai", "gemini", "ollama", "mlx"], label="Finder Model", value="gemini"
+                    ["openai", "gemini", "anthropic", "ollama", "mlx"], label="Finder Model", value="gemini"
                 )
                 submit_btn = gr.Button("Submit")
 

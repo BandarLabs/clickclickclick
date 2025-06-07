@@ -15,6 +15,8 @@ def setup_environment_variables(planner=None, finder=None):
         os.environ["GEMINI_API_KEY"] = click.prompt("Enter your Gemini API key", hide_input=True)
     elif planner and planner.lower() == "4o":
         setup_openai_or_azure()
+    elif planner and planner.lower() == "anthropic":
+        os.environ["ANTHROPIC_API_KEY"] = click.prompt("Enter your Anthropic API key", hide_input=True)
     elif planner and planner.lower() == "ollama":
         os.environ["OLLAMA_MODEL_NAME"] = click.prompt(
             "Select the model name (press enter to use 'llama3.2:latest')",
@@ -32,6 +34,12 @@ def setup_environment_variables(planner=None, finder=None):
         )
     elif finder and finder.lower() == "4o":
         setup_openai_or_azure(existing=True)
+    elif finder and finder.lower() == "anthropic":
+        os.environ["ANTHROPIC_API_KEY"] = click.prompt(
+            "Enter your Anthropic API key (press enter to use existing)",
+            hide_input=True,
+            default=os.getenv("ANTHROPIC_API_KEY", ""),
+        )
     elif finder and finder.lower() == "ollama":
         os.environ["OLLAMA_MODEL_NAME"] = click.prompt(
             "Select the model name (press enter to use 'llama3.2:latest')",
@@ -94,12 +102,12 @@ def setup_openai_or_azure(existing=False):
 @click.option(
     "--planner-model",
     default="openai",
-    help="The planner model to use, 'openai', 'gemini', or 'ollama'.",
+    help="The planner model to use, 'openai', 'gemini', 'anthropic', or 'ollama'.",
 )
 @click.option(
     "--finder-model",
     default="gemini",
-    help="The finder model to use, 'openai', 'gemini', or 'ollama'.",
+    help="The finder model to use, 'openai', 'gemini', 'anthropic', or 'ollama'.",
 )
 def run(task_prompt, platform, planner_model, finder_model):
     """
@@ -127,9 +135,9 @@ def run(task_prompt, platform, planner_model, finder_model):
 @click.command()
 def setup():
     """Setup command to configure planner and finder"""
-    planner = click.prompt("Choose planner model ('gemini', '4o', or 'ollama')", type=str)
+    planner = click.prompt("Choose planner model ('gemini', '4o', 'anthropic', or 'ollama')", type=str)
     finder = click.prompt(
-        "Choose finder model ('gemini', '4o', or 'ollama') (press enter to use '{}')".format(
+        "Choose finder model ('gemini', '4o', 'anthropic', or 'ollama') (press enter to use '{}')".format(
             planner
         ),
         type=str,

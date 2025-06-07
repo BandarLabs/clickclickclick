@@ -59,3 +59,25 @@ mlx:
   finder:
     output_width: 100
     model_path: mlx-community/Molmo-7B-D-0924-4bit
+
+anthropic:
+  api_key: !ENV ANTHROPIC_API_KEY
+  model_name: claude-sonnet-4-0
+  image_width: 512
+  image_height: 512
+  output_width: 512
+  output_height: 512
+  planner:
+    image_width: 512
+    android:
+      image_width: 512
+    osx:
+      image_width: 512
+  finder:
+    image_width: 512
+    image_height: 512
+    android:
+      output_width: 512
+      output_height: 512
+    osx:
+      image_width: 512

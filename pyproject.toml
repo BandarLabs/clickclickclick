@@ -16,6 +16,7 @@ dependencies = [
     "fastapi>=0.115.6",
     "futures>=3.0.5",
     "pillow",
+    "anthropic",
     'py-applescript>=1.0.3; sys_platform == "darwin"',
     "pydantic>=2.10.3",
     "uvicorn>=0.32.1",
