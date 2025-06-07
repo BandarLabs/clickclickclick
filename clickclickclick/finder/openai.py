@@ -11,7 +11,7 @@ class OpenAIFinder(BaseFinder):
         prompts = c.prompts
         system_prompt = prompts["finder-system-prompt"]
         finder_config = c.models.get("finder_config")
-        self.gemini_finder_prompt = c.gemini_finder_prompt
+        self.element_finder_prompt = c.element_finder_prompt
         self.IMAGE_WIDTH = finder_config.get("image_width")
         self.IMAGE_HEIGHT = finder_config.get("image_height")
         self.OUTPUT_WIDTH = finder_config.get("output_width")
@@ -51,7 +51,7 @@ class OpenAIFinder(BaseFinder):
                                 "url": f"data:image/png;base64,{encoded_image}",
                             },
                         },
-                        {"type": "text", "text": self.gemini_finder_prompt(prompt)},
+                        {"type": "text", "text": self.element_finder_prompt(prompt)},
                     ],
                 },
             ],

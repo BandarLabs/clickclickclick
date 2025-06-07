@@ -12,7 +12,7 @@ class GeminiFinder(BaseFinder):
         prompts = c.prompts
         system_prompt = prompts["finder-system-prompt"]
         finder_config = c.models.get("finder_config")
-        self.gemini_finder_prompt = c.gemini_finder_prompt
+        self.element_finder_prompt = c.element_finder_prompt
         self.IMAGE_WIDTH = finder_config.get("image_width")
         self.IMAGE_HEIGHT = finder_config.get("image_height")
         self.OUTPUT_WIDTH = finder_config.get("output_width")
@@ -39,7 +39,7 @@ class GeminiFinder(BaseFinder):
 
                 with Image.open(temp_file_path) as segment_image:
                     response = self.model.generate_content(
-                        [segment_image, self.gemini_finder_prompt(prompt)]
+                        [segment_image, self.element_finder_prompt(prompt)]
                     )
                     response_text = response.text
                     print(response_text, " resp text")
