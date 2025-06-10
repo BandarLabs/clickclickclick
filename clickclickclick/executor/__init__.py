@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, ContextManager
 import logging
 
 logger = logging.getLogger(__name__)
@@ -65,6 +65,10 @@ class Executor(ABC):
 
     @abstractmethod
     def screenshot(self, observation: str) -> str:
+        pass
+
+    @abstractmethod
+    def screenrecord(self, output_file: str) -> ContextManager:
         pass
 
     @abstractmethod

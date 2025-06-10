@@ -1,5 +1,5 @@
 from . import Executor
-from typing import List, Union
+from typing import List, Union, ContextManager
 import logging
 import io
 import base64
@@ -143,6 +143,12 @@ class MacExecutor(Executor):
         except Exception as e:
             logger.exception("Error in screenshot")
             return "" if as_base64 or use_tempfile else None
+
+    def screenrecord(self, output_file: str = "screenrecord.mp4") -> ContextManager:
+        """
+        Screen recording is not implemented on Mac.
+        """
+        raise NotImplementedError("Screen recording is not implemented on Mac")
 
     def apple_script(self, script: str, observation: str) -> bool:
         try:

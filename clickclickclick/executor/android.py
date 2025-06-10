@@ -1,8 +1,9 @@
 from . import Executor
 from subprocess import CompletedProcess, run
 import subprocess
-from typing import List, Union
+from typing import List, Union, ContextManager
 import io
+import time
 import base64
 from PIL import Image
 from tempfile import NamedTemporaryFile
@@ -20,7 +21,7 @@ def run_adb_command(command: List[str], text_mode: bool = True) -> CompletedProc
     )
     if result.returncode != 0:
         logger.error(
-            f"adb command {' '.join(command)} failed: {result.stderr.decode('utf-8').strip()}"
+            f"adb command {' '.join(command)} failed: {result.stderr}"
         )
     return result
 
@@ -184,6 +185,40 @@ class AndroidExecutor(Executor):
         except Exception as e:
             logger.exception("Error in long_press_at_a_point")
             return False
+
+    class ScreenRecordContext:
+        def __init__(self, output_file: str):
+            self.output_file = output_file
+            self.proc = None
+
+        def __enter__(self):
+            # Use exec-out to stream directly to local file
+            self.proc = subprocess.Popen(
+                ["adb", "shell", "screenrecord", f"/data/local/tmp/{self.output_file}"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            return self
+
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            if self.proc:
+                self.proc.terminate()  # Stop the screen recording
+                try:
+                    self.proc.wait(timeout=5)
+                except Exception:
+                    self.proc.kill()
+            time.sleep(1)
+            result = run_adb_command(["pull", f"/data/local/tmp/{self.output_file}", "."])
+            logger.info(result)
+
+    def screenrecord(self, output_file: str = "screenrecord.mp4") -> ContextManager:
+        """
+        Usage:
+            with self.screenrecord("myvideo.mp4"):
+                ... # do stuff
+            # myvideo.mp4 will be saved locally
+        """
+        return self.ScreenRecordContext(output_file)
 
     def screenshot(
         self, observation: str, as_base64: bool = False, use_tempfile: bool = False

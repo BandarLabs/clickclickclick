@@ -4,6 +4,21 @@ from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_with_timeout, execute_task
 from utils import get_executor, get_finder, get_planner
 from interface import run_gradio
+from moviepy import VideoFileClip
+from moviepy.video.fx import MultiplySpeed
+
+VIDEO_SPEEDUP_FACTOR = 4
+
+
+def speed_up_video(video_file, speedup_factor=VIDEO_SPEEDUP_FACTOR):
+    """
+    Speed up the video by the specified factor.
+    """
+
+    clip = VideoFileClip(video_file)
+    clip = clip.with_fps(clip.fps * speedup_factor, True)  # Speed up the video by the factor
+    clip = MultiplySpeed(speedup_factor).apply(clip)
+    return clip
 
 @click.group()
 def cli():
@@ -115,10 +130,19 @@ def run(task_prompt, platform, planner_model, finder_model):
 
     if not task_prompt:
         task_prompt = config.SAMPLE_TASK_PROMPT
+    
 
-    result = execute_with_timeout(
-        execute_task, config.TASK_TIMEOUT_IN_SECONDS, task_prompt, executor, planner, finder, config
-    )
+    record_filename = "screen_recording.mp4"
+    with executor.screenrecord(record_filename):
+        result = execute_with_timeout(
+            execute_task, config.TASK_TIMEOUT_IN_SECONDS, task_prompt, executor, planner, finder, config
+        )
+
+    # Import video clip
+    clip = speed_up_video(record_filename, VIDEO_SPEEDUP_FACTOR)
+
+    # Save video clip
+    clip.write_videofile(f"fast_{record_filename}")
 
     if result is not None:
         print(result)
