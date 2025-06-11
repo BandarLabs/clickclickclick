@@ -64,7 +64,7 @@ Put your model specific settings in `config/models.yaml` and export the keys spe
 
 ## Install the tool
 
-(Ensure `OPENAI_API_KEY` and `GEMINI_API_KEY` API keys in the environment)
+(Ensure `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` or `GEMINI_API_KEY` API key is in the environment)
 
 ```sh
 pip install git+https://github.com/BandarLabs/clickclickclick.git
@@ -101,7 +101,7 @@ By default, planner is `openai` and finder is `gemini`.
 
 You can change the default configuration in `config/models.yaml`
 
-Before running any tasks, you need to configure respective keys like `OPENAI_API_KEY` and `GEMINI_API_KEY` in the environment.
+Before running any tasks, you need to configure respective keys like `OPENAI_API_KEY`, `ANTHROPIC_API_KEY` and `GEMINI_API_KEY` in the environment.
 
 Gemini Flash gives free 15 API calls - https://aistudio.google.com/apikey
 
@@ -121,13 +121,13 @@ python main.py run <task-prompt>
   python main.py run "example task" --platform=osx
   ```
 
-- `--planner-model`: Specifies the planner model to use, either `openai`, `gemini`, or `ollama`. Default is `openai`.
+- `--planner-model`: Specifies the planner model to use, either `openai`, `gemini`, `anthropic` or `ollama`. Default is `openai`.
 
   ```sh
   python main.py run "example task" --planner-model=gemini
   ```
 
-- `--finder-model`: Specifies the finder model to use, either `openai`, `gemini`, or `ollama`. Default is `gemini`.
+- `--finder-model`: Specifies the finder model to use, either `openai`, `gemini`, `anthropic` or `ollama`. Default is `gemini`.
 
   ```sh
   python main.py run "example task" --finder-model=ollama
