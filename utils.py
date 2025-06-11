@@ -7,6 +7,8 @@ from clickclickclick.finder.local_ollama import OllamaFinder
 from clickclickclick.finder.openai import OpenAIFinder
 from clickclickclick.planner.local_ollama import OllamaPlanner
 from clickclickclick.finder.mlx import MLXFinder
+from clickclickclick.planner.anthropic import AnthropicPlanner
+from clickclickclick.finder.anthropic import AnthropicFinder
 
 def get_executor(platform):
     if platform.lower() == "osx":
@@ -24,6 +26,9 @@ def get_planner(planner_model, config, executor):
     elif planner_model.lower() == "ollama":
         executor.screenshot_as_tempfile = True
         return OllamaPlanner(config, executor)
+    elif planner_model.lower() == "anthropic":
+        executor.screenshot_as_base64 = True
+        return AnthropicPlanner(config)
     raise ValueError(f"Unsupported planner model: {planner_model}")
 
 
@@ -36,4 +41,6 @@ def get_finder(finder_model, config, executor):
         return OllamaFinder(config, executor)
     elif finder_model.lower() == "mlx":
         return MLXFinder(config, executor)
+    elif finder_model.lower() == "anthropic":
+        return AnthropicFinder(config, executor)
     raise ValueError(f"Unsupported finder model: {finder_model}")

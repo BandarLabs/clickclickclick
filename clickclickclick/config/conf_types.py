@@ -65,7 +65,7 @@ class BaseConfig:
     def get_functions_list_as_prompt(self, function_declarations) -> str:
         return "\n".join(f"{i + 1}. {fn['name']}" for i, fn in enumerate(function_declarations))
 
-    def gemini_finder_prompt(self, element_name):
+    def element_finder_prompt(self, element_name):
         return f'If "{element_name}" is present then Return bounding box for the same, else 0 0 0 0 for all xmax xmin ymax ymin. Check again.'
 
         # return f'Find if any bounding box of {element_name} in this format ymin,xmin,ymax,xmax. Really thats a "{element_name}"?'

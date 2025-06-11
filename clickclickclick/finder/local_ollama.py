@@ -14,7 +14,7 @@ class OllamaFinder(BaseFinder):
 
         self.executor = executor
         prompts = c.prompts
-        self.gemini_finder_prompt = c.gemini_finder_prompt
+        self.element_finder_prompt = c.element_finder_prompt
         self.system_prompt = prompts["finder-system-prompt"]
         finder_config = c.models.get("finder_config")
         self.IMAGE_WIDTH = finder_config.get("image_width")
@@ -39,7 +39,7 @@ class OllamaFinder(BaseFinder):
                 },
                 {
                     "role": "user",
-                    "content": self.gemini_finder_prompt(prompt),
+                    "content": self.element_finder_prompt(prompt),
                     "images": [temp_file_path],
                 },
             ],
