@@ -81,3 +81,17 @@ anthropic:
       output_height: 512
     osx:
       image_width: 512
+
+# Executor-specific configurations
+executor:
+  android:
+    screen_center_x: 500
+    screen_center_y: 1000
+    scroll_distance: 1000
+    swipe_distance: 600
+    long_press_duration: 1000
+  osx:
+    screen_center_x: 640
+    screen_center_y: 360
+    scroll_distance: 500
+    click_delay: 0.1

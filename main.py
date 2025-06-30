@@ -2,8 +2,9 @@ import click
 import os
 from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_with_timeout, execute_task
-from utils import get_executor, get_finder, get_planner
+from clickclickclick.utils import get_executor, get_finder, get_planner
 from interface import run_gradio
+
 
 @click.group()
 def cli():
@@ -16,7 +17,9 @@ def setup_environment_variables(planner=None, finder=None):
     elif planner and planner.lower() == "4o":
         setup_openai_or_azure()
     elif planner and planner.lower() == "anthropic":
-        os.environ["ANTHROPIC_API_KEY"] = click.prompt("Enter your Anthropic API key", hide_input=True)
+        os.environ["ANTHROPIC_API_KEY"] = click.prompt(
+            "Enter your Anthropic API key", hide_input=True
+        )
     elif planner and planner.lower() == "ollama":
         os.environ["OLLAMA_MODEL_NAME"] = click.prompt(
             "Select the model name (press enter to use 'llama3.2:latest')",
@@ -135,7 +138,9 @@ def run(task_prompt, platform, planner_model, finder_model):
 @click.command()
 def setup():
     """Setup command to configure planner and finder"""
-    planner = click.prompt("Choose planner model ('gemini', '4o', 'anthropic', or 'ollama')", type=str)
+    planner = click.prompt(
+        "Choose planner model ('gemini', '4o', 'anthropic', or 'ollama')", type=str
+    )
     finder = click.prompt(
         "Choose finder model ('gemini', '4o', 'anthropic', or 'ollama') (press enter to use '{}')".format(
             planner
@@ -146,10 +151,12 @@ def setup():
 
     setup_environment_variables(planner, finder)
 
+
 @click.command()
 def gradio():
     """Run the Gradio interface"""
     run_gradio()
+
 
 cli.add_command(run)
 cli.add_command(setup)

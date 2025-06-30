@@ -1,6 +1,6 @@
 from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_with_timeout, execute_task_with_generator
-from utils import get_executor, get_finder, get_planner
+from clickclickclick.utils import get_executor, get_finder, get_planner
 
 
 import gradio as gr
@@ -66,10 +66,14 @@ def run_gradio():
                 )
                 platform = gr.Radio(["android", "osx"], label="Platform", value="android")
                 planner_model = gr.Radio(
-                    ["openai", "gemini", "anthropic", "ollama"], label="Planner Model", value="openai"
+                    ["openai", "gemini", "anthropic", "ollama"],
+                    label="Planner Model",
+                    value="openai",
                 )
                 finder_model = gr.Radio(
-                    ["openai", "gemini", "anthropic", "ollama", "mlx"], label="Finder Model", value="gemini"
+                    ["openai", "gemini", "anthropic", "ollama", "mlx"],
+                    label="Finder Model",
+                    value="gemini",
                 )
                 submit_btn = gr.Button("Submit")
 
