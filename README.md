@@ -134,7 +134,7 @@ click3 run "open calculator and compute 25 * 47" \
 ```python
 from clickclickclick.config import get_config
 from clickclickclick.planner.task import execute_task
-from utils import get_executor, get_planner, get_finder
+from clickclickclick.utils import get_executor, get_planner, get_finder
 
 # Configure execution
 config = get_config("android", "openai", "gemini")

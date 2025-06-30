@@ -10,6 +10,7 @@ from clickclickclick.finder.mlx import MLXFinder
 from clickclickclick.planner.anthropic import AnthropicPlanner
 from clickclickclick.finder.anthropic import AnthropicFinder
 
+
 def get_executor(platform):
     if platform.lower() == "osx":
         return MacExecutor()
