@@ -68,6 +68,8 @@
 - **Python 3.11+**: Required for all functionality
 - **Accessibility Permissions**: Grant to Terminal/IDE when prompted
 
+> **⚠️ macOS Support Status**: The macOS implementation is currently **work in progress** and has severe limitations. Only basic actions like clicking, typing, and screenshots are supported. Mobile-specific features like swipe gestures, long press, volume controls, and app navigation are not implemented.
+
 ### System Requirements
 - Python 3.11 or higher
 - 4GB+ RAM recommended
