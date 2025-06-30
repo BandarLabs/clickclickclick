@@ -77,17 +77,37 @@ class TestAndroidExecutor(unittest.TestCase):
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_scroll_up(self, mock_run_adb_command):
         self.assertTrue(self.executor.scroll(10, "observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "500", "1500", "500", "500"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_y = self.executor.screen_center_y + self.executor.scroll_distance // 2
+        end_y = self.executor.screen_center_y - self.executor.scroll_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(self.executor.screen_center_x),
+            str(start_y),
+            str(self.executor.screen_center_x),
+            str(end_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("scroll 10")
 
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_scroll_down(self, mock_run_adb_command):
         self.assertTrue(self.executor.scroll(-10, "observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "500", "500", "500", "1500"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_y = self.executor.screen_center_y - self.executor.scroll_distance // 2
+        end_y = self.executor.screen_center_y + self.executor.scroll_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(self.executor.screen_center_x),
+            str(start_y),
+            str(self.executor.screen_center_x),
+            str(end_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("scroll -10")
 
     @patch(
@@ -101,9 +121,19 @@ class TestAndroidExecutor(unittest.TestCase):
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_swipe_left(self, mock_run_adb_command):
         self.assertTrue(self.executor.swipe_left("observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "700", "1000", "100", "1000"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_x = self.executor.screen_center_x + self.executor.swipe_distance // 2
+        end_x = self.executor.screen_center_x - self.executor.swipe_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(start_x),
+            str(self.executor.screen_center_y),
+            str(end_x),
+            str(self.executor.screen_center_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("swipe left")
 
     @patch(
@@ -117,9 +147,19 @@ class TestAndroidExecutor(unittest.TestCase):
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_swipe_right(self, mock_run_adb_command):
         self.assertTrue(self.executor.swipe_right("observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "100", "1000", "700", "1000"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_x = self.executor.screen_center_x - self.executor.swipe_distance // 2
+        end_x = self.executor.screen_center_x + self.executor.swipe_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(start_x),
+            str(self.executor.screen_center_y),
+            str(end_x),
+            str(self.executor.screen_center_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("swipe right")
 
     @patch(
@@ -133,9 +173,19 @@ class TestAndroidExecutor(unittest.TestCase):
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_swipe_up(self, mock_run_adb_command):
         self.assertTrue(self.executor.swipe_up("observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "500", "1500", "500", "500"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_y = self.executor.screen_center_y + self.executor.scroll_distance // 2
+        end_y = self.executor.screen_center_y - self.executor.scroll_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(self.executor.screen_center_x),
+            str(start_y),
+            str(self.executor.screen_center_x),
+            str(end_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("swipe up")
 
     @patch(
@@ -149,9 +199,19 @@ class TestAndroidExecutor(unittest.TestCase):
     @patch("clickclickclick.executor.android.run_adb_command")
     def test_swipe_down(self, mock_run_adb_command):
         self.assertTrue(self.executor.swipe_down("observation"))
-        mock_run_adb_command.assert_called_once_with(
-            ["shell", "input", "swipe", "500", "500", "500", "1500"]
-        )
+        # Calculate expected coordinates based on executor properties
+        start_y = self.executor.screen_center_y - self.executor.scroll_distance // 2
+        end_y = self.executor.screen_center_y + self.executor.scroll_distance // 2
+        expected_call = [
+            "shell",
+            "input",
+            "swipe",
+            str(self.executor.screen_center_x),
+            str(start_y),
+            str(self.executor.screen_center_x),
+            str(end_y),
+        ]
+        mock_run_adb_command.assert_called_once_with(expected_call)
         self.logger.debug.assert_called_with("swipe down")
 
     @patch(

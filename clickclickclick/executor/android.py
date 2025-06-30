@@ -35,6 +35,13 @@ def sanitize_for_adb(text: str) -> str:
 
 
 class AndroidExecutor(Executor):
+    # Default configuration constants
+    DEFAULT_SCREEN_CENTER_X = 500
+    DEFAULT_SCREEN_CENTER_Y = 1000
+    DEFAULT_SCROLL_DISTANCE = 1000
+    DEFAULT_SWIPE_DISTANCE = 600
+    DEFAULT_LONG_PRESS_DURATION = 1000
+
     def __init__(self):
         super().__init__()
         self.screenshot_as_base64 = False
@@ -48,18 +55,26 @@ class AndroidExecutor(Executor):
             config = load_yaml(config_path)
             android_config = config.get("executor", {}).get("android", {})
 
-            self.screen_center_x = android_config.get("screen_center_x", 500)
-            self.screen_center_y = android_config.get("screen_center_y", 1000)
-            self.scroll_distance = android_config.get("scroll_distance", 1000)
-            self.swipe_distance = android_config.get("swipe_distance", 600)
-            self.long_press_duration = android_config.get("long_press_duration", 1000)
+            self.screen_center_x = android_config.get(
+                "screen_center_x", self.DEFAULT_SCREEN_CENTER_X
+            )
+            self.screen_center_y = android_config.get(
+                "screen_center_y", self.DEFAULT_SCREEN_CENTER_Y
+            )
+            self.scroll_distance = android_config.get(
+                "scroll_distance", self.DEFAULT_SCROLL_DISTANCE
+            )
+            self.swipe_distance = android_config.get("swipe_distance", self.DEFAULT_SWIPE_DISTANCE)
+            self.long_press_duration = android_config.get(
+                "long_press_duration", self.DEFAULT_LONG_PRESS_DURATION
+            )
         except Exception as e:
             logger.warning(f"Could not load configuration, using defaults: {e}")
-            self.screen_center_x = 500
-            self.screen_center_y = 1000
-            self.scroll_distance = 1000
-            self.swipe_distance = 600
-            self.long_press_duration = 1000
+            self.screen_center_x = self.DEFAULT_SCREEN_CENTER_X
+            self.screen_center_y = self.DEFAULT_SCREEN_CENTER_Y
+            self.scroll_distance = self.DEFAULT_SCROLL_DISTANCE
+            self.swipe_distance = self.DEFAULT_SWIPE_DISTANCE
+            self.long_press_duration = self.DEFAULT_LONG_PRESS_DURATION
 
     def click_mouse(self, observation: str):
         raise NotImplementedError("click mouse is not available in android")
