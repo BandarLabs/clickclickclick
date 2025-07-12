@@ -2,7 +2,6 @@ requests
 pytest
 pyautogui
 fastapi
-futures
 pillow
 google-generativeai
 py-applescript
