@@ -14,7 +14,6 @@ dependencies = [
     "pytest>=8.3.4",
     "pyautogui>=0.9.54",
     "fastapi>=0.115.6",
-    "futures>=3.0.5",
     "pillow",
     "anthropic",
     'py-applescript>=1.0.3; sys_platform == "darwin"',
