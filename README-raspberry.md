@@ -44,7 +44,7 @@ ClickClickClick framework on a Raspberry Pi Zero 2W.
 You can directly install the latest version of ClickClickClick from the GitHub repository.
 
 ```sh
-python3.11 -m pip install git+https://github.com/BandarLabs/clickclickclick.git
+python3.11 -m pip install git+https://github.com/instavm/clickclickclick.git
 ```
 
 

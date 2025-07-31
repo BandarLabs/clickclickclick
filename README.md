@@ -1,7 +1,7 @@
 <div align="center">
 
-[![Stars](https://img.shields.io/github/stars/BandarLabs/clickclickclick?color=yellow&style=flat&label=%E2%AD%90%20stars)](https://github.com/BandarLabs/clickclickclick/stargazers)
-[![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/BandarLabs/clickclickclick/blob/master/LICENSE)
+[![Stars](https://img.shields.io/github/stars/instavm/clickclickclick?color=yellow&style=flat&label=%E2%AD%90%20stars)](https://github.com/instavm/clickclickclick/stargazers)
+[![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/instavm/clickclickclick/blob/master/LICENSE)
 
 </div>
 
@@ -40,7 +40,7 @@
 
 1. **Install the package**:
    ```bash
-   pip install git+https://github.com/BandarLabs/clickclickclick.git
+   pip install git+https://github.com/instavm/clickclickclick.git
    ```
 
 2. **Set up API keys** (choose one):
@@ -48,7 +48,7 @@
    export OPENAI_API_KEY="your-openai-key"
    # OR
    export ANTHROPIC_API_KEY="your-anthropic-key"
-   # OR  
+   # OR
    export GEMINI_API_KEY="your-gemini-key"
    ```
 
@@ -77,12 +77,12 @@
 
 ### Option 1: Direct Installation
 ```bash
-pip install git+https://github.com/BandarLabs/clickclickclick.git
+pip install git+https://github.com/instavm/clickclickclick.git
 ```
 
 ### Option 2: Development Installation
 ```bash
-git clone https://github.com/BandarLabs/clickclickclick
+git clone https://github.com/instavm/clickclickclick
 cd clickclickclick
 pip install -e .
 ```
@@ -144,7 +144,7 @@ finder = get_finder("gemini", config, executor)
 
 # Execute task
 success = execute_task(
-    "open the weather app", 
+    "open the weather app",
     executor, planner, finder, config
 )
 ```
@@ -206,7 +206,7 @@ executor:
 ### Environment Variables
 Required API keys (set one or more):
 - `OPENAI_API_KEY`: OpenAI GPT models
-- `ANTHROPIC_API_KEY`: Anthropic Claude models  
+- `ANTHROPIC_API_KEY`: Anthropic Claude models
 - `GEMINI_API_KEY`: Google Gemini models
 - `OLLAMA_MODEL_NAME`: Local Ollama model name
 
@@ -239,7 +239,7 @@ click3 run "create a draft email to someone@gmail.com asking about lunch plans f
 ```
 
 **Navigation:**
-```bash  
+```bash
 click3 run "open Google Maps and find bus stops in Alanson, MI"
 ```
 
@@ -312,14 +312,14 @@ logging.basicConfig(level=logging.DEBUG)
 We welcome contributions! Please:
 
 1. **Open an issue** to discuss your idea
-2. **Fork the repository** 
+2. **Fork the repository**
 3. **Create a feature branch**
 4. **Make your changes** with tests
 5. **Submit a pull request**
 
 ### Development Setup
 ```bash
-git clone https://github.com/BandarLabs/clickclickclick
+git clone https://github.com/instavm/clickclickclick
 cd clickclickclick
 pip install -e ".[test]"
 pytest
@@ -328,7 +328,7 @@ pytest
 ## 📈 Roadmap
 
 - [ ] iOS support via WebDriverAgent
-- [ ] Windows support with Win32 APIs  
+- [ ] Windows support with Win32 APIs
 - [ ] Voice command integration
 - [ ] Multi-device orchestration
 - [ ] Enhanced error recovery
@@ -341,12 +341,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 🆘 Support
 
 - 📖 **Documentation**: Check the examples and configuration sections
-- 🐛 **Bug Reports**: [Create an issue](https://github.com/BandarLabs/clickclickclick/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/BandarLabs/clickclickclick/discussions)
+- 🐛 **Bug Reports**: [Create an issue](https://github.com/instavm/clickclickclick/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/instavm/clickclickclick/discussions)
 - ⭐ **Star the repo** if you find it useful!
 
 ---
 
 <div align="center">
-Made with ❤️ by BandarLabs | Follow us for updates!
+Made with ❤️ by InstaVM | Follow us for updates!
 </div>
